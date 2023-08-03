@@ -86,10 +86,10 @@ class Solution:
             #TODO: Write code below to return an int with the solution to the prompt.
             fork_node = None
             def left(graph, start_node):
-                edges = graph.get_outgoing_edges(start_node)[0]
+                edges = graph.get_outgoing_edges(start_node)
                 if len(edges) > 1:
                     fork_node = start_node
-                return self.get_outgoing_edges(start_node)[0]
+                return edges[0]
             print(left(graph, start_node))
 
 def main():
