@@ -87,7 +87,7 @@ class Solution:
             fork_node = None
             def left(graph, start_node):
                 edges = graph.get_outgoing_edges(start_node)[0]
-                if len(edges > 1):
+                if len(edges) > 1:
                     fork_node = start_node
                 return self.get_outgoing_edges(start_node)[0]
             print(left(graph, start_node))
