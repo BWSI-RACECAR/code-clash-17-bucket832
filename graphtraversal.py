@@ -82,6 +82,7 @@ class Solution:
             #type graph: String Dictionary
             #type start_node: 
             #return type: int
+            totalTime = 0
             times = {}
             #TODO: Write code below to return an int with the solution to the prompt.
             fork_node = None
@@ -89,8 +90,14 @@ class Solution:
                 edges = graph.get_outgoing_edges(start_node)
                 if len(edges) > 1:
                     fork_node = start_node
-                return edges[0]
-            print(left(graph, start_node))
+                return edges[0], graph.value(start_node, edges[0])
+            next, time = left(graph, start_node)
+            totalTime += time
+            if times[next] < totalTime:
+                times[next] = totalTime
+            else:
+                pass
+            print(times)
 
 def main():
     tc1 = Solution()
