@@ -86,7 +86,7 @@ class Solution:
             #TODO: Write code below to return an int with the solution to the prompt.
             def left(graph, start_node):
                 potential = self.get_outgoing_edges(start_node)
-            print(left(start_node))
+            print(left(graph, start_node))
 
 def main():
     tc1 = Solution()
