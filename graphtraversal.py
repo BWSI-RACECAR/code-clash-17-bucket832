@@ -82,10 +82,14 @@ class Solution:
             #type graph: String Dictionary
             #type start_node: 
             #return type: int
-            
+            times = {}
             #TODO: Write code below to return an int with the solution to the prompt.
+            fork_node = None
             def left(graph, start_node):
-                potential = self.get_outgoing_edges(start_node)
+                edges = graph.get_outgoing_edges(start_node)[0]
+                if len(edges > 1):
+                    fork_node = start_node
+                return self.get_outgoing_edges(start_node)[0]
             print(left(graph, start_node))
 
 def main():
