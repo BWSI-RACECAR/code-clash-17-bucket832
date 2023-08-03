@@ -93,7 +93,7 @@ class Solution:
                 return edges[0], graph.value(start_node, edges[0])
             next, time = left(graph, start_node)
             totalTime += time
-            if times[next] < totalTime:
+            if times[next] and times[next] < totalTime:
                 times[next] = totalTime
             else:
                 pass
