@@ -78,26 +78,39 @@ class Graph(object):
         return self.graph[node1][node2]
 
 class Solution:
+    
     def spath_algo(self, graph, start_node):
-            #type graph: String Dictionary
-            #type start_node: 
-            #return type: int
-            totalTime = 0
-            times = {}
-            #TODO: Write code below to return an int with the solution to the prompt.
-            fork_node = None
-            def left(graph, start_node):
-                edges = graph.get_outgoing_edges(start_node)
-                if len(edges) > 1:
-                    fork_node = start_node
-                return edges[0], graph.value(start_node, edges[0])
-            next, time = left(graph, start_node)
-            totalTime += time
-            if times[next] and times[next] < totalTime:
-                times[next] = totalTime
-            else:
-                pass
-            print(times)
+        #type graph: String Dictionary
+        #type start_node: 
+        #return type: int
+        
+        #TODO: Write code below to return an int with the solution to the prompt.
+        unvisited = list(graph.get_nodes())
+        shortest = {}
+        previous = {}
+   
+        for n in unvisited:
+            shortest[n] = sys.maxsize
+        shortest[n] = 0
+        
+        while len(unvisited) > 0:
+            current_min_node = None
+            for node in unvisited:
+                if current_min_node == None:
+                    current_min_node = node
+                elif shortest[node] < shortest[current_min_node]:
+                    current_min_node = node
+            
+            neighbors = graph.get_outgoing_edges(current_min_node)
+            for neighbor in neighbors:
+                temp = shortest[current_min_node] + graph.value(current_min_node, neighbor)
+                if temp < shortest[neighbor]:
+                    shortest[neighbor] = temp
+                    previous[neighbor] = current_min_node
+    
+            unvisited.remove(current_min_node)
+        
+        return previous, shortest
 
 def main():
     tc1 = Solution()
