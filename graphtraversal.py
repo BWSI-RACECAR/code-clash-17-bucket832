@@ -85,32 +85,33 @@ class Solution:
         #return type: int
         
         #TODO: Write code below to return an int with the solution to the prompt.
-        unvisited = list(graph.get_nodes())
-        shortest = {}
-        previous = {}
+        unvisited_nodes = list(graph.get_nodes())
    
-        for n in unvisited:
-            shortest[n] = sys.maxsize
-        shortest[n] = 0
+        shortest_path = {}
+        previous_nodes = {}
+   
+        for node in unvisited_nodes:
+            shortest_path[node] = sys.maxsize
+        shortest_path[start_node] = 0
         
-        while len(unvisited) > 0:
+        while len(unvisited_nodes) > 0:
             current_min_node = None
-            for node in unvisited:
+            for node in unvisited_nodes:
                 if current_min_node == None:
                     current_min_node = node
-                elif shortest[node] < shortest[current_min_node]:
+                elif shortest_path[node] < shortest_path[current_min_node]:
                     current_min_node = node
             
             neighbors = graph.get_outgoing_edges(current_min_node)
             for neighbor in neighbors:
-                temp = shortest[current_min_node] + graph.value(current_min_node, neighbor)
-                if temp < shortest[neighbor]:
-                    shortest[neighbor] = temp
-                    previous[neighbor] = current_min_node
+                temp = shortest_path[current_min_node] + graph.value(current_min_node, neighbor)
+                if temp < shortest_path[neighbor]:
+                    shortest_path[neighbor] = temp
+                    previous_nodes[neighbor] = current_min_node
     
-            unvisited.remove(current_min_node)
+            unvisited_nodes.remove(current_min_node)
         
-        return previous, shortest
+        return previous_nodes, shortest_path
 
 def main():
     tc1 = Solution()
